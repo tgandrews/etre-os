@@ -1,19 +1,19 @@
 #![no_std]
 #![no_main]
 
-use core::{arch::global_asm, ptr};
-
 mod panic;
 
-global_asm!(include_str!("start.s"));
+static HELLO: &[u8] = b"Hello from EtreOS";
 
 #[no_mangle]
-pub extern "C" fn not_main() {
-    const UART0: *mut u8 = 0x0900_0000 as *mut u8;
-    let out_str = b"Hello from EtreOS";
-    for byte in out_str {
+pub extern "C" fn _start() -> ! {
+    let vga_buffer = 0xb8000 as *mut u8;
+    for (i, &byte) in HELLO.iter().enumerate() {
         unsafe {
-            ptr::write_volatile(UART0, *byte);
+            *vga_buffer.offset(i as isize * 2) = byte;
+            *vga_buffer.offset(i as isize * 2 + 1) = 0xb;
         }
     }
+
+    loop {}
 }

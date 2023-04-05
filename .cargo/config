@@ -1,5 +1,9 @@
 [build]
-target = "aarch64-unknown-etre.json"
+target = "x86_64-unknown-etre.json"
 
-[target.'cfg(target_os = "etre")']
-runner = "./scripts/run.sh"
+[unstable]
+build-std = ["core", "compiler_builtins", "alloc"]
+build-std-features = ["compiler-builtins-mem"]
+
+[target.'cfg(target_os = "none")']
+runner = "bootimage runner"

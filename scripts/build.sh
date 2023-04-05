@@ -1,4 +1,4 @@
 #!/bin/bash
 set +eux
 
-cargo xbuild --target=aarch64-unknown-etre.json
+cargo xbuild --target=x86_64-unknown-etre.json

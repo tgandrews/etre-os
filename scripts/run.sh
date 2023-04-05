@@ -1,8 +1,9 @@
 #!/bin/bash
 set +eux
 
-qemu-system-aarch64 -machine virt \
+cargo bootimage
+
+qemu-system-x86_64 \
+  -machine pc \
   -m 1024M \
-  -cpu cortex-a53 \
-  -nographic \
-  -kernel target/aarch64-unknown-etre/debug/etre-os
+  -drive format=raw,file=target/x86_64-unknown-etre/debug/etre-os.bin

@@ -1,6 +1,6 @@
 {
   "rust-analyzer.check.command": "cargo xcheck",
   "rust-analyzer.check.allTargets": false,
-  "rust-analyzer.check.targets": "aarch64-unknown-etre.json",
+  "rust-analyzer.check.targets": "x86_64-unknown-etre.json",
   "rust-analyzer.check.overrideCommand": ["cargo", "xcheck", "--message-format", "json"]
 }
