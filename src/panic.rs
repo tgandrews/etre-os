@@ -6,5 +6,7 @@ use crate::println;
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
     println!("{}", info);
-    loop {}
+    loop {
+        x86_64::instructions::hlt();
+    }
 }
